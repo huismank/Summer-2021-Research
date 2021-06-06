@@ -11,3 +11,5 @@ This is a test of the commit function.
 commit 1
 
 Commit 2
+
+commit 3
