@@ -9,3 +9,5 @@ This is a git test
 This is a test of the commit function.
 
 commit 1
+
+Commit 2
