@@ -1,0 +1,19 @@
+---
+title: "Countydatasetsmerging"
+author: "Kyle Huisman"
+date: "6/6/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+colnames(x)
+names(x)[names(x) == "X.fipscode."] <- "fips"
+```
