@@ -1,0 +1,25 @@
+---
+title: "Download Census Data"
+author: "Kyle Huisman"
+date: "6/8/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+
+install.packages("tidycensus", "repos=https://cran.us.r-project.org/")
+
+census_api_key("e491e814e2777a0f69ee1ee9d394743a100b633d")
+
+```
+
+```{r}
+library(tidycensus)
+
+load_variables(year=2018, dataset = "acs5")
+```
