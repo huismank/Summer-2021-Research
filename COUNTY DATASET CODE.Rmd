@@ -1,0 +1,71 @@
+---
+title: "COUNTY DATASET CODE"
+author: "Kyle Huisman"
+date: "6/10/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{R}
+library(tidyverse)
+install.packages(lubridate)
+```
+# below we can use the file=url() function to read directly from github
+# notice the dataset ends with ?raw=true
+```{R}
+county_covid<-read_csv(file=url('https://github.com/nytimes/covid-19-data/blob/master/us-counties.csv?raw=true'))
+```
+
+## here's a first cut at calculating monthly  case totals
+## Because the csv was imported with the tidyverse read_csv function,
+## The dates are already stored in an amenable format.
+
+## I'm not familiar with these commands, but this is what we should use
+## https://lubridate.tidyverse.org/
+
+# to make it easier, trying out Michigan first.
+```{R}
+MI_county<-county_covid %>%
+  filter(state=="Michigan")
+```
+
+# there are several functions for working with dates.
+# just tabulating the cases over months and years, you use
+# months() and years() as functions applied to the date column:
+```{R}
+MI_county %>%
+  group_by(year(date), month(date)) %>%
+  summarise(sum(cases))
+```
+# then adding county:
+```{R}
+MI_county %>%
+  group_by(year(date), month(date), county) %>%
+  summarise(sum(cases))
+```
+
+```{r}
+ymd("2020-01-21")
+parse_date_time(x= "date", orders="2020-01-21")
+
+
+```
+
+
+## We'll have to figure out how to get these monthly counts into an organized dataset
+
+
+
+################################### Merging data tables ###################################
+## https://dplyr.tidyverse.org/reference/join.html
+
+# once we get the election and census, other data, we'll need to merge them together.
+# we will do this with 'joins'...
+
+
+inner_join(data, by="fips") %>%
+
+
